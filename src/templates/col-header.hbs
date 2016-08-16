@@ -1,6 +1,6 @@
-<div class='dc-col-header' style='width:{{width}}px;' {{#if isDiscrete}}discrete{{/if}}>
+<div class='dc-col-header {{label}}' style='width:{{width}}px;' {{#if isDiscrete}}discrete{{/if}}>
   <h4>
-    {{label}}
+    <span class="dc-header-label">{{label}}</span>
     <button class='col-action' on-click='sort-by-col:{{index}},false'>
       {{#if isDiscrete || index === -1}}
         <i class='fa fa-sort-alpha-asc'></i>

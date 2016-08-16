@@ -154,14 +154,15 @@ Datacomb.prototype.initTable = function() {
       var nodeContent = "<div class='dc-cell' style='width:"+self.colWidth+"px;' coltype='label'><div class='dc-label'>"+d._rowLabel+"</div></div>";
 
       node.classList.add('dc-row');
+      node.classList.add('dc-row-'+d.ndx);
       node._dcndx = d.ndx;
       var discreteColor;
       self.parsed.columns.forEach(function(column, colNdx) {
         if(column.type === 'discrete') {
           discreteColor = palette[d._discreteNdx[colNdx] % palette.length];
-          nodeContent += "<div class='dc-cell' style='width:"+self.colWidth+"px;' coltype='disc'><div class='dc-bar' style='background-color:"+discreteColor+";'></div><div class='dc-disc-val'>"+d._values[colNdx]+"</div></div>";
+          nodeContent += "<div class='dc-cell dc-cell-"+colNdx+" "+column.colName+"' style='width:"+self.colWidth+"px;' coltype='disc'><div class='dc-bar dc-bar-"+colNdx+"' style='background-color:"+discreteColor+";'></div><div class='dc-disc-val'>"+d._values[colNdx]+"</div></div>";
         } else {
-          nodeContent += "<div class='dc-cell' style='width:"+self.colWidth+"px;' coltype='cont'><div class='dc-bar' style='width:"+d._widths[colNdx]+"%'></div><div class='dc-cont-val'>"+d._labels[colNdx]+"</div></div>";
+          nodeContent += "<div class='dc-cell dc-cell-"+colNdx+" "+column.colName+"' style='width:"+self.colWidth+"px;' coltype='cont'><div class='dc-bar dc-bar-"+colNdx+"' style='width:"+d._widths[colNdx]+"%'></div><div class='dc-cont-val'>"+d._labels[colNdx]+"</div></div>";
         }
       });
       node.innerHTML = nodeContent;
